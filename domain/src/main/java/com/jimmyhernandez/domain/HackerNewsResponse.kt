@@ -1,7 +1,7 @@
 package com.jimmyhernandez.domain
 
 data class HackerNewsResponse(
-    val hits: List<Hit>? = null,
+    val hits: List<Hit>,
     val nbHits: Int? = null,
     val page: Int? = null,
     val nbPages: Int? = null,

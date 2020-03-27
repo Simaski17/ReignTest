@@ -21,10 +21,10 @@ data class Hit(
     val points: Int? = null,
     @SerializedName("story_text")
     @Expose
-    val storyText: Any? = null,
+    val storyText: String? = null,
     @SerializedName("comment_text")
     @Expose
-    val commentText: Any? = null,
+    val commentText: String? = null,
     @SerializedName("num_comments")
     @Expose
     val numComments: Int? = null,
@@ -33,10 +33,10 @@ data class Hit(
     val storyId: Any? = null,
     @SerializedName("story_title")
     @Expose
-    val storyTitle: Any? = null,
+    val storyTitle: String? = null,
     @SerializedName("story_url")
     @Expose
-    val storyUrl: Any? = null,
+    val storyUrl: String? = null,
     @SerializedName("parent_id")
     @Expose
     val parentId: Any? = null,
