@@ -1,20 +1,55 @@
 package com.jimmyhernandez.domain
 
+import com.google.gson.annotations.Expose
+import com.google.gson.annotations.SerializedName
+
 data class Hit(
+    @SerializedName("created_at")
+    @Expose
     val createdAt: String? = null,
+    @SerializedName("title")
+    @Expose
     val title: String? = null,
+    @SerializedName("url")
+    @Expose
     val url: String? = null,
+    @SerializedName("author")
+    @Expose
     val author: String? = null,
+    @SerializedName("points")
+    @Expose
     val points: Int? = null,
+    @SerializedName("story_text")
+    @Expose
     val storyText: Any? = null,
+    @SerializedName("comment_text")
+    @Expose
     val commentText: Any? = null,
+    @SerializedName("num_comments")
+    @Expose
     val numComments: Int? = null,
+    @SerializedName("story_id")
+    @Expose
     val storyId: Any? = null,
+    @SerializedName("story_title")
+    @Expose
     val storyTitle: Any? = null,
+    @SerializedName("story_url")
+    @Expose
     val storyUrl: Any? = null,
+    @SerializedName("parent_id")
+    @Expose
     val parentId: Any? = null,
+    @SerializedName("created_at_i")
+    @Expose
     val createdAtI: Int? = null,
+    @SerializedName("_tags")
+    @Expose
     val tags: List<String>? = null,
+    @SerializedName("objectID")
+    @Expose
     val objectID: String? = null,
+    @SerializedName("_highlightResult")
+    @Expose
     val highlightResult: HighlightResult? = null
 )
