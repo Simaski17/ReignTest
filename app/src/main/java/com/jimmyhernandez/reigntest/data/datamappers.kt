@@ -20,7 +20,8 @@ fun Hit.toRoomNews(): DomainNews =
         createdAtI,
         tags,
         objectID,
-        highlightResult
+        highlightResult,
+        delete
     )
 
 fun DomainNews.toDamainNews(): Hit =
@@ -40,5 +41,6 @@ fun DomainNews.toDamainNews(): Hit =
         createdAtI,
         tags,
         objectID,
-        highlightResult
+        highlightResult,
+        delete
     )

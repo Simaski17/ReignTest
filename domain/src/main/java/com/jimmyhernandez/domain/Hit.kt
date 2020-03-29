@@ -51,5 +51,6 @@ data class Hit(
     val objectID: String? = null,
     @SerializedName("_highlightResult")
     @Expose
-    val highlightResult: HighlightResult? = null
+    val highlightResult: HighlightResult? = null,
+    val delete: Boolean = false
 )

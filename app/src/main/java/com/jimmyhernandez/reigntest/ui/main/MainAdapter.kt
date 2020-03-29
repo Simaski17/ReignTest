@@ -4,6 +4,7 @@ import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import com.jimmyhernandez.domain.HackerNewsResponse
 import com.jimmyhernandez.domain.Hit
 import com.jimmyhernandez.reigntest.R
@@ -17,10 +18,30 @@ import kotlin.collections.ArrayList
 class MainAdapter(private val listener: (Hit) -> Unit) : RecyclerView.Adapter<MainAdapter.ViewHolder>()  {
 
     private var listOfNews = arrayListOf<Hit>()
+    private var removedPosition: Int = 0
+    lateinit var removedItem: Hit
 
     fun updateListNews(news: ArrayList<Hit>) {
+        this.listOfNews.clear()
         this.listOfNews.addAll(news)
         notifyDataSetChanged()
+    }
+
+    fun removeItem(position: Int, viewHolder: RecyclerView.ViewHolder) {
+        removedItem = listOfNews[position]
+        removedPosition = position
+
+        this.listOfNews.removeAt(position)
+        notifyItemRemoved(position)
+
+//        Method to undo row deletion
+        /*
+        Snackbar.make(viewHolder.itemView, "$removedItem removed", Snackbar.LENGTH_LONG).setAction("UNDO") {
+            this.listOfNews.add(removedPosition, removedItem)
+            notifyItemInserted(removedPosition)
+
+        }.show()
+         */
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -52,21 +73,5 @@ class MainAdapter(private val listener: (Hit) -> Unit) : RecyclerView.Adapter<Ma
             }
 
         }
-
-        fun dateFormat(date: String){
-            val inPattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX"
-            val outPattern = "dd.MM.yyyy hh:mm"
-
-            val inFormat = SimpleDateFormat(inPattern, Locale.getDefault())
-            val outFormat = SimpleDateFormat(outPattern, Locale.getDefault())
-
-            val inDate = inFormat.parse(date)
-            val outDate = outFormat.format(inDate)
-
-            Log.e("TEST", outDate)
-        }
     }
-
-
-
 }

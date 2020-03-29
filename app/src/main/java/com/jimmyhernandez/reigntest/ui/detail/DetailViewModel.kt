@@ -1,6 +1,5 @@
 package com.jimmyhernandez.reigntest.ui.detail
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.ittalent.testitandroid.ui.common.Data
 import com.jimmyhernandez.domain.Hit
@@ -31,8 +30,6 @@ class DetailViewModel(private val id: Int, private val findNewsById: FindNewsByI
                 }
             }.onSuccess { response ->
                 if (response.storyId  != 0){
-                    Log.e("findNews","findNews storyUrl ${response.storyUrl}")
-                    Log.e("findNews","findNews url ${response.url}")
                     model.postValue(response)
                 } else {
                     model.postException(Exception("${"Error"}: "))

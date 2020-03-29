@@ -59,5 +59,6 @@ data class Hit(
     var objectID: String? = null,
     @SerializedName("_highlightResult")
     @Expose
-    @Ignore var highlightResult: HighlightResult? = null
+    @Ignore var highlightResult: HighlightResult? = null,
+    var delete: Boolean = false
 )

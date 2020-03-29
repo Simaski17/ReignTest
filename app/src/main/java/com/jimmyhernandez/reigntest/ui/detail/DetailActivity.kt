@@ -1,9 +1,9 @@
 package com.jimmyhernandez.reigntest.ui.detail
 
-import android.graphics.Bitmap
+import android.content.IntentFilter
+import android.net.ConnectivityManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
@@ -13,13 +13,10 @@ import com.ittalent.testitandroid.ui.common.Data
 import com.ittalent.testitandroid.ui.common.DataState
 import com.jimmyhernandez.domain.Hit
 import com.jimmyhernandez.reigntest.R
-import com.jimmyhernandez.yapotest.ui.common.app
-import com.jimmyhernandez.yapotest.ui.common.getViewModel
-import com.jimmyhernandez.yapotest.ui.common.notNull
-import com.jimmyhernandez.yapotest.ui.common.with
+import com.jimmyhernandez.yapotest.ui.common.*
 import kotlinx.android.synthetic.main.activity_detail.*
 
-class DetailActivity : AppCompatActivity() {
+class DetailActivity : AppCompatActivity(), ConnectivityReceiver.ConnectivityReceiverListener {
 
     companion object {
         const val NEWS = "DetailActivity:news"
@@ -27,6 +24,10 @@ class DetailActivity : AppCompatActivity() {
 
     private lateinit var component: DetailActivityComponent
     private val viewModel: DetailViewModel by lazy { getViewModel { component.detailViewModel } }
+
+    private var isConnectedNet: Boolean = false
+    private var viewIfl: View? = null
+    private var mNetworkReceiver = ConnectivityReceiver()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,6 +64,8 @@ class DetailActivity : AppCompatActivity() {
                     showUrl(it.storyUrl.toString())
                 } else {
                     wbDetailNews.visibility = GONE
+                    pbNewsDetail.visibility = View.GONE
+                    tvNewsDetail.visibility = GONE
                     tvErrorDetailNews.visibility = VISIBLE
                 }
             }
@@ -72,7 +75,6 @@ class DetailActivity : AppCompatActivity() {
     private fun showUrl(url: String) {
         with(wbDetailNews) {
             settings.javaScriptEnabled = true
-
             webChromeClient = WebChromeClient()
             webViewClient = object : WebViewClient() {
 
@@ -88,6 +90,39 @@ class DetailActivity : AppCompatActivity() {
             }
             wbDetailNews.loadUrl(url)
         }
+    }
+
+    override fun onNetworkConnectionChanged(isConnected: Boolean) {
+        isConnectedNet = isConnected
+        if (!isConnected) {
+            if (viewIfl == null) {
+                viewIfl = View(applicationContext)
+                viewIfl = vsNetworkingNotAvailableDetail.inflate()
+            } else if (viewIfl != null) {
+                viewIfl!!.visibility = View.VISIBLE
+            }
+        } else {
+            viewIfl?.let {
+                viewIfl!!.visibility = View.GONE
+            }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        registerReceiver(
+            mNetworkReceiver,
+            IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
+        )
+        ConnectivityReceiver.connectivityReceiverListener = this
+    }
+
+    override fun onPause() {
+        super.onPause()
+        viewIfl?.let {
+            viewIfl!!.visibility = View.GONE
+        }
+        unregisterReceiver(mNetworkReceiver)
     }
 
 }

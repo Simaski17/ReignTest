@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">ReignTest</string>
     <string name="loading_text">Cargando...</string>
+    <string name="networking_error_text">No poee una conexión a internet y no hay noticias guardadas en nuestra base de datos.</string>
 </resources>
