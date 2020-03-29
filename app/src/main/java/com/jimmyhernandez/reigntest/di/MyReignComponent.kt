@@ -1,6 +1,8 @@
 package com.jimmyhernandez.reigntest.di
 
 import android.app.Application
+import com.jimmyhernandez.reigntest.ui.detail.DetailActivityComponent
+import com.jimmyhernandez.reigntest.ui.detail.DetailActivityModule
 import com.jimmyhernandez.reigntest.ui.main.MainActivityComponent
 import com.jimmyhernandez.reigntest.ui.main.MainActivityModule
 import dagger.BindsInstance
@@ -12,6 +14,7 @@ import javax.inject.Singleton
 interface MyReignComponent {
 
     fun plus(module: MainActivityModule): MainActivityComponent
+    fun plus(module: DetailActivityModule): DetailActivityComponent
 
     @Component.Factory
     interface Factory {

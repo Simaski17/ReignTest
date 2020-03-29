@@ -1,6 +1,11 @@
 package com.jimmyhernandez.reigntest.di
 
+import android.app.Application
+import androidx.room.Room
+import com.jimmyhernandez.data.source.LocalDataSource
 import com.jimmyhernandez.data.source.RemoteDataSource
+import com.jimmyhernandez.reigntest.data.database.NewsDatabase
+import com.jimmyhernandez.reigntest.data.database.RoomDataSource
 import com.jimmyhernandez.reigntest.data.server.TheReignDbDatasource
 import com.jimmyhernandez.reigntest.data.server.TheReignDbService
 import dagger.Module
@@ -14,6 +19,17 @@ import javax.inject.Singleton
 
 @Module
 class AppModule {
+
+    @Provides
+    @Singleton
+    fun databaseProvider(app: Application) = Room.databaseBuilder(
+        app,
+        NewsDatabase::class.java,
+        "users-db"
+    ).build()
+
+    @Provides
+    fun localDataSourceProvider(db: NewsDatabase): LocalDataSource = RoomDataSource(db)
 
     @Singleton
     @Provides

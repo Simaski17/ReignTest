@@ -30,7 +30,7 @@ data class Hit(
     val numComments: Int? = null,
     @SerializedName("story_id")
     @Expose
-    val storyId: Any? = null,
+    val storyId: Int? = null,
     @SerializedName("story_title")
     @Expose
     val storyTitle: String? = null,
@@ -39,7 +39,7 @@ data class Hit(
     val storyUrl: String? = null,
     @SerializedName("parent_id")
     @Expose
-    val parentId: Any? = null,
+    val parentId: Int? = null,
     @SerializedName("created_at_i")
     @Expose
     val createdAtI: Int? = null,

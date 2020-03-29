@@ -4,38 +4,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.MainActivity">
+    tools:context=".ui.detail.DetailActivity">
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/srlMainNews"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+    <WebView
+        android:id="@+id/wbDetailNews"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent" >
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rrvMainNews"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+    </WebView>
 
-
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    <TextView
+        android:id="@+id/tvErrorDetailNews"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No hay una url asociada a la noticia."
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ProgressBar
-        android:id="@+id/pbMainNews"
-        style="?android:attr/progressBarStyle"
+        android:id="@+id/pbNewsDetail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/srlMainNews"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvMainNews"
+        android:id="@+id/tvNewsDetail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -43,6 +48,6 @@
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pbMainNews" />
+        app:layout_constraintTop_toBottomOf="@+id/pbNewsDetail" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,6 +2,8 @@ package com.jimmyhernandez.reigntest.ui.main
 
 import android.os.Bundle
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -11,6 +13,7 @@ import com.ittalent.testitandroid.ui.common.DataState
 import com.jimmyhernandez.domain.HackerNewsResponse
 import com.jimmyhernandez.reigntest.R
 import com.jimmyhernandez.reigntest.ui.common.JodaTime
+import com.jimmyhernandez.reigntest.ui.detail.DetailActivity
 import com.jimmyhernandez.yapotest.ui.common.*
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -37,7 +40,9 @@ class MainActivity : AppCompatActivity() {
             addItemDecoration(DividerItemDecoration(this@MainActivity, DividerItemDecoration.VERTICAL))
 
             mainAdapter = MainAdapter {
-
+                startActivity<DetailActivity>{
+                    putExtra(DetailActivity.NEWS, it.createdAtI)
+                }
             }
 
             rrvMainNews.adapter = mainAdapter
@@ -50,10 +55,16 @@ class MainActivity : AppCompatActivity() {
         event.with {
             when (dataState) {
                 DataState.LOADING -> {
+                    pbMainNews.visibility = VISIBLE
+                    tvMainNews.visibility = VISIBLE
                 }
                 DataState.SUCCESS -> {
+                    pbMainNews.visibility = GONE
+                    tvMainNews.visibility = GONE
                 }
                 DataState.ERROR -> {
+                    pbMainNews.visibility = GONE
+                    tvMainNews.visibility = GONE
                 }
             }
 
