@@ -11,7 +11,7 @@
 * [Android Studio 3.6](https://developer.android.com/studio/index.html?hl=es-419).
 * [Joda Time](https://github.com/JodaOrg/joda-time): Widely used for the Java date and time classes prior to Java SE 8
 * [Retrofit](http://square.github.io/retrofit/): A type-safe HTTP client for Android and Java
-* [Room] (https://developer.android.com/topic/libraries/architecture/room): Room Persistence Library
+* [Room](https://developer.android.com/topic/libraries/architecture/room): Room Persistence Library
 
 ## Targets
 
